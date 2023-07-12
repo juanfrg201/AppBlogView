@@ -69,9 +69,4 @@ export default {
     background-color: #f5f5f5; /* Cambia el color de fondo del menú en pantallas más pequeñas */
   }
 }
-
-.navbar-item,
-.buttons {
-  margin: 0.5rem; /* Agrega margen de 0.5 rem a los componentes del Navbar */
-}
 </style>

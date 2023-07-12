@@ -2,6 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import WelcomePageHome from '../views/WelcomePage/WelcomePageHome'
 import NewUser from '../views/User/New'
 import LoginUser from '../views/User/LoginUser'
+import IndexBlog from '../views/Blogs/IndexBlogs'
+import ShowBlog from '../views/Blogs/ShowBlogs'
+
 
 const routes = [
   {
@@ -19,6 +22,16 @@ const routes = [
     name: 'login_user_path',
     component: LoginUser
   }, 
+  {
+    path: '/blogs/index',
+    name: 'blogs_index_path',
+    component: IndexBlog
+  },
+  {
+    path: '/blogs/:id',
+    name: 'blogs_show_path',
+    component: ShowBlog
+  }
 ]
 
 const router = createRouter({

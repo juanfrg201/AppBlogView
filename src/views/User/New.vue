@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+import NavBar from '@/components/NavBar/NLoginNavBar.vue';
 
 export default {
   name: "NewUser",

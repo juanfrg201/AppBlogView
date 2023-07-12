@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBarNLogin /> 
   <div class="container" style="margin: top -5rem;">
     <h1 class="title">Login</h1>
     <form @submit.prevent="register">
@@ -27,18 +27,26 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+
+import NavBarNLogin from '@/components/NavBar/NLoginNavBar.vue';
+
 
 export default {
   name: "NewUser",
   components: {
-    NavBar
+    NavBarNLogin
   },
   data() {
     return {
       email: '',
       password: ''
     };
+  },
+  computed: {
+    isUserLoggedIn() {
+      const token = localStorage.getItem('token');
+      return !!token; // Devuelve true si hay un token almacenado, indicando que el usuario está logeado
+    }
   },
   methods: {
     register() {
@@ -57,6 +65,15 @@ export default {
       .then(data => {
         // Lógica para manejar la respuesta del servidor
         console.log('Respuesta del servidor:', data);
+        if (data.authentication_token) {
+          // Almacenar el token en localStorage o en una cookie
+          localStorage.setItem('token', data.authentication_token);
+          
+          // Redirigir al usuario a la página de inicio o a otra ruta
+          this.$router.push('/');
+        } else {
+          console.log('no se puede iniciar sesion')
+        }
 
         // Reiniciar los campos del formulario
         this.email = '';
