@@ -1,53 +1,53 @@
 <template>
   <div>
-    <section class="hero is-fullheight-with-navbar custom-margin-top">
+    <section class="hero is-primary">
       <div class="hero-body">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <h1 class="title">Crear Blog</h1>
-              <div class="box">
-                <form @submit.prevent="createBlog">
-                  <div class="field">
-                    <label class="label">Título</label>
-                    <div class="control">
-                      <input class="input" type="text" v-model="blogTitle" required>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label">Contenido</label>
-                    <div class="control">
-                      <textarea class="textarea" v-model="blogContent" required></textarea>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="control">
-                      <button class="button is-primary" type="submit">Crear</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="column">
-              <h1 class="title">Crear Comunidad</h1>
-              <div class="box">
-                <form @submit.prevent="createCommunity">
-                  <div class="field">
-                    <label class="label">Nombre</label>
-                    <div class="control">
-                      <input class="input" type="text" v-model="communityName" required>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="control">
-                      <button class="button is-primary" type="submit">Crear</button>
-                    </div>
-                  </div>
-                </form>
+        <div class="columns">
+          <div class="column is-12">
+            <div class="container content">
+              <i class="is-large fab fa-discord"></i>
+              <i class="is-large fas fa-code"></i>
+              <h1 class="title">Code <em>All</em> The Things</h1>
+              <h3 class="subtitle">
+                Collection of code goodies for next-level dev
+              </h3>
+              <div class="columns">
+                <div class="column is-2">
+                  <a href="https://github.com/BulmaTemplates/bulma-templates" target="_blank" class="button is-success is-right">
+                    <span>Create Post</span>
+                  </a>
+                </div>
+                <div class="column is-2">
+                  <a href="https://github.com/BulmaTemplates/bulma-templates" target="_blank" class="button is-warning is-right">
+                    <span>Create Community</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="notification is-primary">
+              <div class="buttons are-medium">
+                <button class="button is-success" :class="{ 'is-active': selectedAction === 'post' }" @click="selectedAction = 'post'">Post</button>
+                <button class="button is-warning" :class="{ 'is-active': selectedAction === 'community' }" @click="selectedAction = 'community'">Community</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" >
+      <div class="container" v-if="selectedAction === 'post'">
+        <PostView />
+      </div>
+      <div class="container" v-else-if="selectedAction === 'community'">
+        <CommunityView />
       </div>
     </section>
   </div>
@@ -55,15 +55,18 @@
 
 <script>
 
+import PostView from '@/components/ShowPostCommunity/PostView.vue';
+import CommunityView from '@/components/ShowPostCommunity/CommunityView.vue';
+
 export default {
   name: 'LoginWelcomePage',
+  components: {
+    PostView,
+    CommunityView
+  },
   data() {
     return {
-      blogTitle: '',
-      blogContent: '',
-      communityName: '',
-      publishedBlogs: [],
-      publishedCommunities: []
+      selectedAction: ''
     };
   },
   methods: {

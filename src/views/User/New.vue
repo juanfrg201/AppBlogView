@@ -1,29 +1,35 @@
 <template>
   <NavBar />
-  <div class="container" style="margin: top -5rem;">
-    <h1 class="title">Registro</h1>
-    <form @submit.prevent="register">
-      <div class="field">
-        <label class="label">Correo electrónico</label>
-        <div class="control">
-          <input class="input" type="email" v-model="email" required>
-        </div>
-      </div>
+  <section class="hero is-success is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <h3 class="title has-text-black">Sign Up</h3>
+                <hr class="login-hr">
+                <p class="subtitle has-text-black">Please Sign Up to proceed.</p>
+                <div class="box">
+                    <form @submit.prevent="register">
+                        <div class="field">
+                            <div class="control">
+                              <input class="input" type="email" v-model="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
 
-      <div class="field">
-        <label class="label">Contraseña</label>
-        <div class="control">
-          <input class="input" type="password" v-model="password" required>
+                        <div class="field">
+                            <div class="control">
+                              <input class="input" type="password" v-model="password" placeholder="Your Password" required>
+                            </div>
+                        </div>
+                        <button class="button is-fullwidth is-primary" type="submit">Sign Up<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <p class="has-text-grey">
+                    <a href="../">Login</a> &nbsp;·&nbsp;
+                </p>
+            </div>
         </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <button class="button is-primary" type="submit">Registrarse</button>
-        </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -57,6 +63,8 @@ export default {
       .then(data => {
         // Lógica para manejar la respuesta del servidor
         console.log('Respuesta del servidor:', data);
+        localStorage.setItem('token', data.authentication_token);
+        this.$router.push('/');
 
         // Reiniciar los campos del formulario
         this.email = '';

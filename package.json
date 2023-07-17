@@ -10,6 +10,7 @@
   "dependencies": {
     "bulma": "^0.9.4",
     "core-js": "^3.8.3",
+    "faker": "^5.5.3",
     "vue": "^3.2.13",
     "vue-loader": "^17.2.2",
     "vue-router": "^4.2.4"
