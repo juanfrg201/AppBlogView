@@ -74,7 +74,8 @@ export default {
         if (data.authentication_token) {
           // Almacenar el token en localStorage o en una cookie
           localStorage.setItem('token', data.authentication_token);
-          
+          localStorage.setItem('user_id', data.id);
+        
           // Redirigir al usuario a la página de inicio o a otra ruta
           this.$router.push('/');
         } else {

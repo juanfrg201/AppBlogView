@@ -7,13 +7,13 @@
             <div class="container content">
               <i class="is-large fab fa-discord"></i>
               <i class="is-large fas fa-code"></i>
-              <h1 class="title">Code <em>All</em> The Things</h1>
+              <h1 class="title">Create <em>All</em> The Things</h1>
               <h3 class="subtitle">
-                Collection of code goodies for next-level dev
+                Collection of post and communities
               </h3>
               <div class="columns">
                 <div class="column is-2">
-                  <a href="https://github.com/BulmaTemplates/bulma-templates" target="_blank" class="button is-success is-right">
+                  <a @click="send_new_blog" target="_blank" class="button is-success is-right">
                     <span>Create Post</span>
                   </a>
                 </div>
@@ -70,40 +70,19 @@ export default {
     };
   },
   methods: {
-    createBlog() {
-      // Lógica para crear un nuevo blog
-      // Ejemplo:
-      const token = localStorage.getItem('token');
+    
+		send_new_blog() {
+      const userId = localStorage.getItem('user_id');
 
-// Verificar si el token existe
-      if (token) {
-        // Convertir el token en un objeto JSON
-
-        fetch('http://localhost:3000/api/v1/blogs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: this.blogTitle,
-          body: this.blogContent, 
-          token: token
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Lógica para manejar la respuesta del servidor
-        console.log('Respuesta del servidor:', data);
-      })
-      .catch(error => {
-        // Manejo de errores
-        console.error('Error en la petición:', error);
-      });
+      if (userId) {
+        this.$router.push(`/user/${userId}/new/blog`);
+      } else {
+        this.$router.push('/');
       }
       
-      this.blogTitle = '';
-      this.blogContent = '';
+      
     },
+    
     createCommunity() {
       const token = localStorage.getItem('token');
 

@@ -1,5 +1,6 @@
 <template>
-	<section class="card-content is-widescree">
+  <NavBarNLogin />
+	<section class="card-content custom-margin-top">
 		<div class="card">
 			<div class="column">
 				<div class="column is-4">
@@ -22,6 +23,7 @@
 								<router-link :to="`/blogs/${blog.id}`" target="_blank" class="button is-info is-right">
 									<span>Ver</span>
 								</router-link>
+
 							</div>		
 							<div class="message-body">
 								{{ blog.body }}
@@ -30,14 +32,20 @@
 				</div>
 			</div>
 		</div>
+		
 		</div> 
 	</section>
 </template>
 
 <script>
 
+import NavBarNLogin from '@/components/NavBar/LoginNavBar.vue';
+
 export default {
-  name: 'PostView',
+  name: 'IndePost',
+  components: {
+    NavBarNLogin
+  },
   data() {
     return {
 			blogs: []
@@ -48,14 +56,20 @@ export default {
   },
   methods: {
     fetchBlogs() {
-      fetch('http://localhost:3000/api/v1/blogs')
-        .then(response => response.json())
-        .then(data => {
-          this.blogs = data;
-        })
-        .catch(error => {
-          console.error('Error fetching blogs:', error);
-        });
+			const user_id = localStorage.getItem("user_id");
+			if (user_id){
+				fetch(`http://localhost:3000/api/v1/user/blogs/user_blogs?user_id=${user_id}`)
+					.then(response => response.json())
+					.then(data => {
+						this.blogs = data;
+					})
+					.catch(error => {
+						console.error('Error fetching blogs:', error);
+					});
+			} else {
+				console.log("error")
+			}
+		
     }
   }
 };
@@ -66,7 +80,7 @@ export default {
   background-color: #f5f5f5;
 }
 .custom-margin-top{
-  margin-top: 8rem;
+  margin-top: 4rem;
 }
 
 .title {

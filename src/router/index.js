@@ -3,6 +3,8 @@ import WelcomePageHome from '../views/WelcomePage/WelcomePageHome'
 import NewUser from '../views/User/New'
 import LoginUser from '../views/User/LoginUser'
 import ShowBlog from '../views/Blogs/ShowBlogs'
+import IndexBlog from '../views/Blogs/IndexBlogs'
+import NewBlogs from '../views/Blogs/NewBlogs'
 
 
 const routes = [
@@ -25,6 +27,16 @@ const routes = [
     path: '/blogs/:id',
     name: 'blogs_show_path',
     component: ShowBlog
+  }, 
+  {
+    path: '/user/:id/blogs',
+    name: 'user_blogs_path',
+    component: IndexBlog
+  }, 
+  {
+    path: '/user/:id/new/blog',
+    name: 'user_new_blogs_path',
+    component: NewBlogs
   }
 ]
 
