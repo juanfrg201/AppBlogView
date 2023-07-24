@@ -20,7 +20,7 @@
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="https://via.placeholder.com/300x200" alt="Imagen de ejemplo">
+                  <img src="@/assets/ImagenComentario.png" alt="Imagen de ejemplo">
                 </figure>
               </div>
               <div class="card-content">
@@ -43,7 +43,7 @@
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="https://via.placeholder.com/300x200" alt="Imagen de ejemplo">
+                  <img src="@/assets/ImagenMensaje.png" alt="Imagen de ejemplo">
                 </figure>
               </div>
               <div class="card-content">
@@ -65,7 +65,7 @@
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="https://via.placeholder.com/300x200" alt="Imagen de ejemplo">
+                  <img src="@/assets/ImagenComunidad.png" alt="Imagen de ejemplo">
                 </figure>
               </div>
               <div class="card-content">

@@ -57,10 +57,10 @@ export default {
     createBlog() {
       // Lógica para crear un nuevo blog
       // Ejemplo:
-      const token = localStorage.getItem('token');
+      const user_id = this.$route.params.id;
 
       // Verificar si el token existe
-      if (token) {
+      if (user_id) {
         // Convertir el token en un objeto JSON
 
         fetch('http://localhost:3000/api/v1/blogs', {
@@ -69,9 +69,11 @@ export default {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          title: this.blogTitle,
-          body: this.blogContent, 
-          token: token
+          blog: { // 
+            title: this.blogTitle,
+            body: this.blogContent, 
+            user_id: user_id
+          }
         })
       })
       .then(response => response.json())
