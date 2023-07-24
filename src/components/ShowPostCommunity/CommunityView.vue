@@ -1,18 +1,15 @@
 <template>
 	<section class="is-info is-small">
 		<div class="columns">
-			<div class="column is-4">
+			<div class="column is-4" v-for="community in communities" :key="community.id">
 				<div class="card is-shady">
-					<div class="card-image">
-						<figure class="image is-4by3">
-							<img src="https://images.unsplash.com/photo-1515555230216-82228b88ea98?auto=format&amp;fit=crop&amp;w=900&amp;q=60" alt="Placeholder image" class="modal-button" data-target="modal-image2">
-						</figure>
-					</div>
 					<div class="card-content">
 						<div class="content">
-							<h4>Click on image above</h4>
-							<p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
-							<span class="button is-link modal-button" data-target="modal-image2">Conoce la comunidad</span>
+							<h4>{{ community.name }}</h4>
+							<p>{{ community.description }}</p>
+							<router-link :to="`/user/${community.user_id}/community/${community.id}`" target="_blank" class="button is-info is-right">
+								<span>Ver</span>
+							</router-link>
 						</div>
 					</div>
 				</div>
@@ -25,5 +22,25 @@
 
 	export default {
 		name: 'CommunityView',
+		data() {
+			return {
+				communities: []
+			};
+		},
+		created() {
+			this.fetchCommunitites();
+		},
+		methods: {
+			fetchCommunitites() {
+				fetch('http://localhost:3000/api/v1/communities')
+					.then(response => response.json())
+					.then(data => {
+						this.communities = data;
+					})
+					.catch(error => {
+						console.error('Error fetching blogs:', error);
+					});
+			}
+		}
 	};
 </script>

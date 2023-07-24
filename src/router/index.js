@@ -5,6 +5,8 @@ import LoginUser from '../views/User/LoginUser'
 import ShowBlog from '../views/Blogs/ShowBlogs'
 import IndexBlog from '../views/Blogs/IndexBlogs'
 import NewBlogs from '../views/Blogs/NewBlogs'
+import NewCommunity from '../views/Community/NewCommunity'
+import ShowCommunity from '../views/Community/ShowCommunity'
 
 
 const routes = [
@@ -37,6 +39,16 @@ const routes = [
     path: '/user/:id/new/blog',
     name: 'user_new_blogs_path',
     component: NewBlogs
+  }, 
+  {
+    path: '/user/:id/new/community',
+    name: 'user_new_communities_path',
+    component: NewCommunity
+  },
+  {
+    path: '/user/:user_id/community/:community_id',
+    name: 'community_show_path',
+    component: ShowCommunity
   }
 ]
 

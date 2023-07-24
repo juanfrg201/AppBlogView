@@ -18,7 +18,7 @@
                   </a>
                 </div>
                 <div class="column is-2">
-                  <a href="https://github.com/BulmaTemplates/bulma-templates" target="_blank" class="button is-warning is-right">
+                  <a @click="send_new_community" target="_blank" class="button is-warning is-right">
                     <span>Create Community</span>
                   </a>
                 </div>
@@ -82,35 +82,16 @@ export default {
       
       
     },
-    
-    createCommunity() {
-      const token = localStorage.getItem('token');
+    send_new_community() {
+      const userId = localStorage.getItem('user_id');
 
-// Verificar si el token existe
-      if (token) {
-        // Convertir el token en un objeto JSON
-
-        fetch('http://localhost:3000/api/v1/communities', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: this.communityName,
-          token: token
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Lógica para manejar la respuesta del servidor
-        console.log('Respuesta del servidor:', data);
-      })
-      .catch(error => {
-        // Manejo de errores
-        console.error('Error en la petición:', error);
-      });
+      if (userId) {
+        this.$router.push(`/user/${userId}/new/community`);
+      } else {
+        this.$router.push('/');
       }
-      this.communityName = '';
+      
+      
     }
   }
 };
